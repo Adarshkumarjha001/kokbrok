@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kokborok NLP — Part-of-Speech Tagging</title>
+    <meta name="description"
+        content="Advanced Part-of-Speech tagging for the Kokborok language of the Borok people of Tripura.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <canvas id="webgl-canvas"></canvas>
+
+    <nav class="navbar">
+        <div class="container">
+            <a class="nav-logo" href="index.html">🌿 Kokborok NLP</a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="history.html">History</a>
+                <a href="importance.html">Importance</a>
+                <a href="technology.html">Technology</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-content">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="fade-up fade-up-d1"
+                    style="display:flex;justify-content:center;margin-bottom:var(--space-6);">
+                    <div class="status-badge">
+                        <span class="status-dot" id="status-dot"></span>
+                        <span id="status-text">Connecting…</span>
+                    </div>
+                </div>
+                <div class="hero-frame fade-up fade-up-d2">
+                    <div class="hero-frame-tr"></div>
+                    <div class="hero-frame-bl"></div>
+                    <h1 class="hero-title">Kokborok<br><span>NLP</span></h1>
+                    <p class="hero-subtitle">Part-of-Speech Analysis for the Language<br>of the Borok People</p>
+                </div>
+                <div class="hero-ctas fade-up fade-up-d3">
+                    <a href="#demo" class="btn btn-primary">Try the Demo ↓</a>
+                    <a href="history.html" class="btn btn-secondary">Learn the Language</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+
+            <!-- DEMO -->
+            <section class="section" id="demo">
+                <span class="section-label reveal">Live Demo</span>
+                <h2 class="section-title reveal reveal-d1">Analyze Kokborok Text</h2>
+                <div class="card demo-card reveal reveal-d2">
+                    <label class="demo-label" for="text-input">Enter Kokborok Sequence</label>
+                    <textarea id="text-input" class="demo-textarea" rows="4"
+                        placeholder="Ang nwng kwrwi sa."></textarea>
+                    <div class="demo-actions">
+                        <button class="btn btn-primary" onclick="analyzeText()">Analyze</button>
+                        <div class="spinner" id="spinner"></div>
+                        <span class="error-inline" id="error-inline"></span>
+                    </div>
+                    <div class="results-area" id="results-area">
+                        <p class="results-title">— Processing Results —</p>
+                        <div class="tokens-flex" id="tokens-flex"></div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider-motif reveal">
+                <div class="divider-diamonds"><span></span><span></span><span></span></div>
+            </div>
+
+            <!-- STATS -->
+            <section class="section">
+                <div class="stats-grid">
+                    <div class="card stat-card reveal reveal-d1">
+                        <div class="stat-number">17</div>
+                        <div class="stat-label">POS Categories</div>
+                    </div>
+                    <div class="card stat-card reveal reveal-d2">
+                        <div class="stat-number">~1M</div>
+                        <div class="stat-label">Native Speakers</div>
+                    </div>
+                    <div class="card stat-card reveal reveal-d3">
+                        <div class="stat-number">125M</div>
+                        <div class="stat-label">Model Parameters</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MODEL CARDS -->
+            <section class="section">
+                <span class="section-label reveal">Technology</span>
+                <h2 class="section-title reveal reveal-d1">Neural Architecture</h2>
+                <div class="grid-3">
+                    <div class="card reveal reveal-d1">
+                        <span class="feature-icon">🧠</span>
+                        <h3 style="margin-bottom:var(--space-3);">Deep Learning Core</h3>
+                        <p>XLM-RoBERTa fine-tuned for token classification across 12 complex transformer layers.</p>
+                    </div>
+                    <div class="card reveal reveal-d2">
+                        <span class="feature-icon">⚡</span>
+                        <h3 style="margin-bottom:var(--space-3);">17 POS Categories</h3>
+                        <p>Nouns, pronouns, verbs, adjectives, adverbs, particles, and complex punctuation structures.
+                        </p>
+                    </div>
+                    <div class="card reveal reveal-d3">
+                        <span class="feature-icon">🚀</span>
+                        <h3 style="margin-bottom:var(--space-3);">State-of-the-Art</h3>
+                        <p>Leverages massive multilingual pre-training to deliver unmatched accuracy for Kokborok.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- POS LEGEND -->
+            <section class="section">
+                <span class="section-label reveal">Reference</span>
+                <h2 class="section-title reveal reveal-d1">Tag Index</h2>
+                <button class="legend-toggle reveal reveal-d2" onclick="toggleLegend()">▼ Show All POS Tags</button>
+                <div class="legend-grid" id="legend-grid"></div>
+            </section>
+
+        </div>
+
+        <footer>
+            <div class="divider-motif" style="max-width:280px;margin:0 auto var(--space-6);">
+                <div class="divider-diamonds"><span></span><span></span><span></span></div>
+            </div>
+            <p>© 2025 Kokborok NLP Project — Preserving and Advancing Indigenous Language Technology</p>
+        </footer>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        populateLegend();
+        checkModelStatus();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology — Kokborok NLP</title>
+    <meta name="description"
+        content="The technology behind Kokborok NLP — XLM-RoBERTa architecture, Flask API, and the full technology stack.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <canvas id="webgl-canvas"></canvas>
+
+    <nav class="navbar">
+        <div class="container">
+            <a class="nav-logo" href="index.html">🌿 Kokborok NLP</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="history.html">History</a>
+                <a href="importance.html">Importance</a>
+                <a href="technology.html" class="active">Technology</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-content">
+
+        <!-- HERO -->
+        <section class="hero" style="min-height:62vh;">
+            <div class="hero-inner">
+                <div class="hero-frame fade-up fade-up-d1">
+                    <div class="hero-frame-tr"></div>
+                    <div class="hero-frame-bl"></div>
+                    <h1 class="hero-title">Under<br><span>the Hood</span></h1>
+                    <p class="hero-subtitle">The architecture, model, and stack powering Kokborok NLP</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+
+            <!-- ARCH DIAGRAM -->
+            <section class="section">
+                <span class="section-label reveal">Neural Pipeline</span>
+                <h2 class="section-title reveal reveal-d1">Model Architecture</h2>
+                <div class="card reveal reveal-d2">
+                    <div class="arch-diagram">
+                        <div class="arch-node">
+                            <div class="arch-node-title">Input</div>
+                            <div class="arch-node-sub">Kokborok Text</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">Tokenizer</div>
+                            <div class="arch-node-sub">SentencePiece BPE</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node" style="border-color:var(--color-accent-gold);">
+                            <div class="arch-node-title">XLM-RoBERTa</div>
+                            <div class="arch-node-sub">12 Layers · 768d</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">Classifier</div>
+                            <div class="arch-node-sub">768 → 17 labels</div>
+                        </div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-node">
+                            <div class="arch-node-title">POS Tags</div>
+                            <div class="arch-node-sub">+Confidence</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="divider-motif reveal">
+                <div class="divider-diamonds"><span></span><span></span><span></span></div>
+            </div>
+
+            <!-- MODEL SPECS TABLE -->
+            <section class="section">
+                <span class="section-label reveal">Specifications</span>
+                <h2 class="section-title reveal reveal-d1">Model Details</h2>
+                <div class="card reveal reveal-d2" style="padding:0;overflow:hidden;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Architecture</strong></td>
+                                <td>XLMRobertaForTokenClassification</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Task</strong></td>
+                                <td>Token Classification / POS Tagging</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Parameters</strong></td>
+                                <td>~125 Million</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hidden Size</strong></td>
+                                <td>768 dimensions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Transformer Layers</strong></td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Attention Heads</strong></td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td><strong>POS Categories</strong></td>
+                                <td>17</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Max Sequence Length</strong></td>
+                                <td>512 tokens</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HuggingFace Hub</strong></td>
+                                <td><a href="https://huggingface.co/ritik3412/Kokborok_model"
+                                        target="_blank">ritik3412/Kokborok_model</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TECH STACK -->
+            <section class="section">
+                <span class="section-label reveal">Stack</span>
+                <h2 class="section-title reveal reveal-d1">Technology Stack</h2>
+                <div class="tech-grid">
+                    <div class="card tech-card reveal reveal-d1">
+                        <span class="tech-icon">🤗</span>
+                        <span class="tech-name">HuggingFace</span>
+                        <span class="tech-desc">Transformers + Model Hub</span>
+                    </div>
+                    <div class="card tech-card reveal reveal-d2">
+                        <span class="tech-icon">🐍</span>
+                        <span class="tech-name">Flask</span>
+                        <span class="tech-desc">Python REST API</span>
+                    </div>
+                    <div class="card tech-card reveal reveal-d3">
+                        <span class="tech-icon">🔥</span>
+                        <span class="tech-name">PyTorch</span>
+                        <span class="tech-desc">Deep learning engine</span>
+                    </div>
+                    <div class="card tech-card reveal reveal-d4">
+                        <span class="tech-icon">🌐</span>
+                        <span class="tech-name">Three.js</span>
+                        <span class="tech-desc">WebGL 3D particles</span>
+                    </div>
+                    <div class="card tech-card reveal reveal-d1">
+                        <span class="tech-icon">▲</span>
+                        <span class="tech-name">Vercel</span>
+                        <span class="tech-desc">Frontend hosting</span>
+                    </div>
+                    <div class="card tech-card reveal reveal-d2">
+                        <span class="tech-icon">☁️</span>
+                        <span class="tech-name">Render</span>
+                        <span class="tech-desc">Backend API hosting</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- API ACCORDION -->
+            <section class="section">
+                <span class="section-label reveal">API Reference</span>
+                <h2 class="section-title reveal reveal-d1">Endpoints</h2>
+
+                <div class="accordion-item reveal reveal-d1">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div><span class="method-badge method-GET">GET</span> / — Health Check</div>
+                        <span class="acc-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <pre>{
+  "status": "ready",
+  "model_loaded": true,
+  "model_name": "ritik3412/Kokborok_model"
+}</pre>
+                    </div>
+                </div>
+
+                <div class="accordion-item reveal reveal-d2">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div><span class="method-badge method-POST">POST</span> /api/analyze — POS Tagging</div>
+                        <span class="acc-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <pre>// Request Body
+{ "text": "Ang nwng kwrwi sa." }
+
+// Response
+{
+  "tokens": [
+    { "text": "Ang",   "tag": "PRON", "score": 97.3 },
+    { "text": "nwng",  "tag": "ADP",  "score": 94.1 },
+    { "text": "kwrwi", "tag": "VERB", "score": 91.8 },
+    { "text": "sa",    "tag": "PART", "score": 88.5 }
+  ]
+}</pre>
+                    </div>
+                </div>
+
+                <div class="accordion-item reveal reveal-d3">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        <div><span class="method-badge method-GET">GET</span> /api/model-info — Model Metadata</div>
+                        <span class="acc-icon">▼</span>
+                    </button>
+                    <div class="accordion-body">
+                        <pre>{
+  "architecture": "XLMRobertaForTokenClassification",
+  "num_labels": 17,
+  "labels": ["ADJ","ADP","ADV","AUX","CCONJ","DET",
+             "INTJ","NOUN","NUM","PART","PRON","PROPN",
+             "PUNCT","SCONJ","UNK","VERB","X"],
+  "vocab_size": 250002,
+  "max_length": 512
+}</pre>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- WHY XLM-ROBERTA -->
+            <section class="section">
+                <span class="section-label reveal">Design Choice</span>
+                <h2 class="section-title reveal reveal-d1">Why XLM-RoBERTa?</h2>
+                <div class="grid-3">
+                    <div class="card reveal reveal-d1">
+                        <span class="feature-icon">🌍</span>
+                        <h3 style="margin-bottom:var(--space-3);">100 Languages</h3>
+                        <p>XLM-RoBERTa was pre-trained on 100 languages. Its cross-lingual representations transfer well
+                            to low-resource Kokborok.</p>
+                    </div>
+                    <div class="card reveal reveal-d2">
+                        <span class="feature-icon">🧩</span>
+                        <h3 style="margin-bottom:var(--space-3);">Subword Tokenization</h3>
+                        <p>SentencePiece BPE handles unseen and agglutinative morphology naturally — ideal for
+                            Kokborok's complex word-building patterns.</p>
+                    </div>
+                    <div class="card reveal reveal-d3">
+                        <span class="feature-icon">🎯</span>
+                        <h3 style="margin-bottom:var(--space-3);">Efficient Fine-Tuning</h3>
+                        <p>A small Kokborok annotated corpus is sufficient for effective fine-tuning — no need for
+                            millions of labeled examples.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <footer>
+            <div class="divider-motif" style="max-width:280px;margin:0 auto var(--space-6);">
+                <div class="divider-diamonds"><span></span><span></span><span></span></div>
+            </div>
+            <p>© 2025 Kokborok NLP Project — Preserving and Advancing Indigenous Language Technology</p>
+        </footer>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

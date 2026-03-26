@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFD Level 0 - Context Diagram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            margin: 0 0.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.active {
+            background: #764ba2;
+        }
+
+        .diagram-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: #f7fafc;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .entity {
+            fill: #4299e1;
+            stroke: #2b6cb0;
+            stroke-width: 3;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .entity:hover {
+            fill: #3182ce;
+            filter: drop-shadow(0 4px 8px rgba(66, 153, 225, 0.4));
+        }
+
+        .process {
+            fill: #48bb78;
+            stroke: #2f855a;
+            stroke-width: 3;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .process:hover {
+            fill: #38a169;
+            filter: drop-shadow(0 4px 8px rgba(72, 187, 120, 0.4));
+        }
+
+        .data-store {
+            fill: #ed8936;
+            stroke: #c05621;
+            stroke-width: 3;
+        }
+
+        .flow-arrow {
+            stroke: #e53e3e;
+            stroke-width: 3;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+
+        .label {
+            font-size: 18px;
+            font-weight: 600;
+            fill: white;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+
+        .flow-label {
+            font-size: 14px;
+            fill: #2d3748;
+            font-weight: 500;
+        }
+
+        .legend {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f7fafc;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .legend h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .legend-box {
+            width: 50px;
+            height: 40px;
+            border-radius: 6px;
+            border: 2px solid;
+        }
+
+        .legend-box.entity {
+            background: #4299e1;
+            border-color: #2b6cb0;
+        }
+
+        .legend-box.process {
+            background: #48bb78;
+            border-color: #2f855a;
+            border-radius: 50%;
+        }
+
+        .legend-box.flow {
+            background: transparent;
+            border: none;
+            position: relative;
+        }
+
+        .legend-box.flow::after {
+            content: '→';
+            font-size: 30px;
+            color: #e53e3e;
+            position: absolute;
+            left: 10px;
+            top: -5px;
+        }
+
+        .description {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #edf2f7;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .description h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .description ul {
+            margin-left: 1.5rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Data Flow Diagram - Level 0</h1>
+        <p class="subtitle">Context Diagram - Kokborok NLP System</p>
+
+        <div class="navigation">
+            <a href="dfd_level0.html" class="nav-btn active">Level 0 DFD</a>
+            <a href="dfd_level1.html" class="nav-btn">Level 1 DFD</a>
+            <a href="index.html" class="nav-btn">Back to Home</a>
+        </div>
+
+        <div class="diagram-container">
+            <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+                <!-- Define arrow marker -->
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#e53e3e" />
+                    </marker>
+                </defs>
+
+                <!-- External Entity: User -->
+                <rect x="50" y="250" width="200" height="100" class="entity" rx="10"/>
+                <text x="150" y="295" class="label">User</text>
+                <text x="150" y="320" class="label" style="font-size: 14px;">(Kokborok Speaker)</text>
+
+                <!-- Central Process: Kokborok NLP System -->
+                <ellipse cx="600" cy="300" rx="180" ry="120" class="process"/>
+                <text x="600" y="290" class="label">Kokborok NLP</text>
+                <text x="600" y="315" class="label">System</text>
+
+                <!-- External Entity: Hugging Face Model Hub -->
+                <rect x="950" y="250" width="200" height="100" class="entity" rx="10"/>
+                <text x="1050" y="290" class="label">Hugging Face</text>
+                <text x="1050" y="315" class="label">Model Hub</text>
+
+                <!-- Data Flow: User to System (Input) -->
+                <path d="M 250 280 L 420 280" class="flow-arrow"/>
+                <text x="320" y="265" class="flow-label">Kokborok Text Input</text>
+
+                <!-- Data Flow: System to User (Output) -->
+                <path d="M 420 320 L 250 320" class="flow-arrow"/>
+                <text x="310" y="345" class="flow-label">Tagged POS Results</text>
+
+                <!-- Data Flow: System to Model Hub (Request) -->
+                <path d="M 780 270 L 950 270" class="flow-arrow"/>
+                <text x="840" y="255" class="flow-label">Model Request</text>
+
+                <!-- Data Flow: Model Hub to System (Response) -->
+                <path d="M 950 330 L 780 330" class="flow-arrow"/>
+                <text x="840" y="355" class="flow-label">Model Weights & Config</text>
+
+                <!-- System boundary label -->
+                <text x="600" y="50" style="font-size: 20px; fill: #667eea; font-weight: bold; text-anchor: middle;">
+                    System Boundary
+                </text>
+                <rect x="380" y="150" width="440" height="300" 
+                      style="fill: none; stroke: #667eea; stroke-width: 3; stroke-dasharray: 10,5;" rx="20"/>
+            </svg>
+        </div>
+
+        <div class="legend">
+            <h3>Legend</h3>
+            <div class="legend-grid">
+                <div class="legend-item">
+                    <div class="legend-box entity"></div>
+                    <div>
+                        <strong>External Entity</strong>
+                        <p style="font-size: 0.9rem; color: #718096;">Sources/Destinations of data</p>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box process"></div>
+                    <div>
+                        <strong>Process</strong>
+                        <p style="font-size: 0.9rem; color: #718096;">System that transforms data</p>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box flow"></div>
+                    <div>
+                        <strong>Data Flow</strong>
+                        <p style="font-size: 0.9rem; color: #718096;">Movement of information</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="description">
+            <h3>📝 Level 0 DFD Description</h3>
+            <p style="margin-bottom: 1rem; color: #4a5568;">
+                The Context Diagram (Level 0 DFD) shows the Kokborok NLP System as a single process 
+                interacting with external entities. This high-level view illustrates:
+            </p>
+            <ul>
+                <li><strong>User:</strong> Kokborok speakers who input text for analysis</li>
+                <li><strong>Kokborok NLP System:</strong> The central processing system that performs POS tagging</li>
+                <li><strong>Hugging Face Model Hub:</strong> External repository providing the trained AI model</li>
+                <li><strong>Data Flows:</strong>
+                    <ul style="margin-top: 0.5rem;">
+                        <li>Input: Kokborok text from user</li>
+                        <li>Output: Tagged results with POS labels</li>
+                        <li>Model Request: System fetches model weights</li>
+                        <li>Model Response: Hub provides model configuration</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
